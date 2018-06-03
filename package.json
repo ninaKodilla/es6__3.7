@@ -1,0 +1,26 @@
+{
+  "name": "es6__3.7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel --plugins transform-react-jsx script.js --out-file script-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/npupiec/es6__3.7.git"
+  },
+  "author": "Nina Pupiec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/npupiec/es6__3.7/issues"
+  },
+  "homepage": "https://github.com/npupiec/es6__3.7#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "http-server": "^0.11.1"
+  }
+}

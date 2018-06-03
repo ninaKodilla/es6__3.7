@@ -1,0 +1,41 @@
+.controls {
+    padding: 30px;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #000;
+}
+
+.button {
+    padding: 10px 8px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.stopwatch {
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-save {
+    border: 1px solid #fff;
+    font-size: 15px;
+}
+
+.results-list {
+    padding: 40px;
+    background-color: #fff;
+    border: 1px solid #000;
+    justify-content: center;
+    min-height: 70px;
+    margin-top: 40px;
+}
+
+.list-item {
+    color: #fff;
+}
