@@ -1,8 +1,15 @@
 class Stopwatch extends React.Component {
-    constructor() {
-        super();
-        this.running = false;
+    constructor(props) {
+        super(props);
         this.reset();
+        this.state = {
+            running: false,
+            times: {
+                minutes: 0,
+                seconds: 0,
+                miliseconds: 0
+            }
+        };
     }
 
     reset() {
@@ -38,6 +45,7 @@ class Stopwatch extends React.Component {
             seconds: this.state.times.seconds,
             minutes: this.state.times.minutes
         };
+
         newTimes.miliseconds += 1;
 
         if (newTimes.miliseconds >= 100) {
@@ -56,13 +64,75 @@ class Stopwatch extends React.Component {
         clearInterval(this.watch);
     }
 
+    render() {
+        return React.createElement(
+            "div",
+            { className: "timer" },
+            React.createElement(
+                "nav",
+                { className: "controls" },
+                React.createElement(
+                    "a",
+                    { href: "#", className: "button", id: "start", onClick: _ => this.start() },
+                    "Start"
+                ),
+                React.createElement(
+                    "a",
+                    { href: "#", className: "button", id: "stop", onClick: _ => this.stop() },
+                    "Stop"
+                ),
+                React.createElement(
+                    "a",
+                    { href: "#", className: "button", id: "reset", onClick: _ => this.reset() },
+                    "Reset"
+                )
+            ),
+            React.createElement(
+                "div",
+                { className: "stopwatch" },
+                this.format(this.state.times)
+            ),
+            React.createElement(
+                "div",
+                { className: "result-list" },
+                React.createElement(
+                    "div",
+                    { className: "nav-list" },
+                    React.createElement(SaveButton, { time: this.format(this.state.times) }),
+                    React.createElement(ResetButton, null)
+                ),
+                React.createElement("ul", { className: "results" })
+            )
+        );
+    }
+}
+
+class SaveButton extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     save() {
         const items = document.querySelector('.results');
         const item = document.createElement('li');
         item.setAttribute('class', 'list-item');
         items.appendChild(item);
 
-        item.innerHTML += this.format(this.state.times);
+        item.innerHTML += this.props.time;
+    }
+
+    render() {
+        return React.createElement(
+            "a",
+            { href: "#", className: "button btn-save", id: "save", onClick: e => this.save(e) },
+            "Save result"
+        );
+    }
+}
+
+class ResetButton extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
     removeSaves() {
@@ -76,54 +146,13 @@ class Stopwatch extends React.Component {
 
     render() {
         return React.createElement(
-            'div',
-            { className: 'timer' },
-            React.createElement(
-                'nav',
-                { className: 'controls' },
-                React.createElement(
-                    'a',
-                    { href: '#', className: 'button', id: 'start', onClick: _ => this.start() },
-                    'Start'
-                ),
-                React.createElement(
-                    'a',
-                    { href: '#', className: 'button', id: 'stop', onClick: _ => this.stop() },
-                    'Stop'
-                ),
-                React.createElement(
-                    'a',
-                    { href: '#', className: 'button', id: 'reset', onClick: _ => this.reset() },
-                    'Reset'
-                )
-            ),
-            React.createElement(
-                'div',
-                { className: 'stopwatch' },
-                this.format(this.state.times)
-            ),
-            React.createElement(
-                'div',
-                { className: 'result-list' },
-                React.createElement(
-                    'div',
-                    { className: 'nav-list' },
-                    React.createElement(
-                        'a',
-                        { href: '#', className: 'button btn-save', id: 'save', onClick: e => this.save(e) },
-                        'Save result'
-                    ),
-                    React.createElement(
-                        'a',
-                        { href: '#', className: 'button btn-save', id: 'removeAll', onClick: e => this.removeSaves(e) },
-                        'Remove all result'
-                    )
-                ),
-                React.createElement('ul', { className: 'results' })
-            )
+            "a",
+            { href: "#", className: "button btn-save", id: "removeAll", onClick: e => this.removeSaves(e) },
+            "Remove all result"
         );
     }
 }
+
 function pad0(value) {
     let result = value.toString();
     if (result.length < 2) {
