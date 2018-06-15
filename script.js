@@ -68,9 +68,9 @@ class Stopwatch extends React.Component {
         return (
             <div className="timer">
                 <nav className="controls">
-                    <a href="#" className="button" id="start" onClick={_=> this.start()}>Start</a>
-                    <a href="#" className="button" id="stop" onClick={_=> this.stop()}>Stop</a>
-                    <a href="#" className="button" id="reset" onClick={_=> this.reset()}>Reset</a>
+                    <button className="button" id="start" onClick={_=> this.start()}>Start</button>
+                    <button className="button" id="stop" onClick={_=> this.stop()}>Stop</button>
+                    <button className="button" id="reset" onClick={_=> this.reset()}>Reset</button>
                 </nav>
                 <div className="stopwatch">{this.format(this.state.times)}</div> 
                 <div className="result-list">
@@ -101,7 +101,7 @@ class SaveButton extends React.Component {
 
     render() {
         return(
-            <a href="#" className="button btn-save" id="save" onClick={(e) => this.save(e)}>Save result</a>
+            <button className="button btn-save" id="save" onClick={(e) => this.save(e)}>Save result</button>
         )
     }
 }
@@ -122,7 +122,7 @@ class ResetButton extends React.Component {
 
     render() {
         return (
-            <a href="#" className="button btn-save" id="removeAll" onClick={(e) => this.removeSaves(e)}>Remove all result</a>
+            <button className="button btn-save" id="removeAll" onClick={(e) => this.removeSaves(e)}>Remove all result</button>
         )
     }
 }
